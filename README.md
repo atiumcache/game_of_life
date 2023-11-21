@@ -23,6 +23,4 @@ I have implemeneted 5 different seeds for the user to choose from:
 
 ## Other Options
 
-Users can choose from 3 speeds and 3 generation quantities.
-
-
+3 speed options: slow, medium, fast. This corresponds to the speed at which each generation occurs. 
