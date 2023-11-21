@@ -164,6 +164,11 @@ def intro_screen():
     print(term.bold_white_on_darkgreen(term.center('\u25A0 \u25A0 \u25A0 \u25A0 \u25A0 \u25A0 \u25A0')))
     print(term.white_on_darkgreen(term.center('Press any key to continue.')))
     print(term.bold_white_on_darkgreen(term.center('')))
+    
+    with term.hidden_cursor(), term.cbreak():
+        inp = ''
+        while inp == '':
+            inp = term.inkey()
 
 
 def main():
@@ -172,14 +177,8 @@ def main():
     universe = np.zeros((term.height-1,term.width))  # -1 accounts for header
 
     intro_screen()
-
-    with term.hidden_cursor(), term.cbreak():
-        inp = ''
-        while inp == '':
-            inp = term.inkey()
-        seed_choice()
-        rate_choice()
-
+    seed_choice()
+    rate_choice()
 
     with term.hidden_cursor(), term.cbreak():
         refresh_screen()
@@ -201,6 +200,7 @@ def main():
             # If window resizes, restart. 
             if term.width != len(universe[0]):
                 main()
+
 
 with term.fullscreen():
     main()
