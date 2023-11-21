@@ -5,7 +5,7 @@ from time import sleep
 
 term = Terminal()
 
-universe = np.zeros((term.height-1,term.width))
+universe = np.zeros((term.height-1,term.width))  # -1 accounts for header
 
 num_generations = 500
 
@@ -87,20 +87,21 @@ def refresh_screen():
     Display a new generation.
     """
     with term.cbreak(), term.hidden_cursor():
-        print(term.white_on_darkgreen(term.center('Begin Life: Spacebar      Quit: Ctrl+C')))
+        print(term.bold_white_on_darkgreen(term.center('Generate Life: Hold Spacebar    Main Menu: M    Quit: Q')))
         for row in universe:
             for cell in row:
                 if cell == int(0):
-                    print(term.lightgreen_on_black(' '), end='')
+                    print(term.darkgreen_on_white(' '), end='')
                 else:
-                    print(term.lightgreen_on_black('\u2593'), end='')
+                    print(term.bold_darkgreen_on_white('\u2593'), end='')
 
 
-def options_sequence():
+def seed_choice():
     """
-    A sequence of input screens that allows the user to customize the Game of Life. 
+    Allow user to choose initial seed. 
     """
-    print(term.clear + term.move_y(term.height //2))
+    print(term.clear + term.move_y(term.height//2-5))
+    print(term.bold_white_on_darkgreen(term.center('')))
     print(term.bold_white_on_darkgreen(term.center('Conway\'s Game of Life')))
     print(term.white_on_darkgreen(term.center('Choose your starting seed.')))
     print(term.white_on_darkgreen(term.center('1    Beacon             ')))
@@ -108,6 +109,7 @@ def options_sequence():
     print(term.white_on_darkgreen(term.center('3    Diehard            ')))
     print(term.white_on_darkgreen(term.center('4    Acorn              ')))
     print(term.white_on_darkgreen(term.center('5    Block Switch Engine')))
+    print(term.bold_white_on_darkgreen(term.center('')))
 
     with term.hidden_cursor(), term.cbreak():
         inp = ''
@@ -124,14 +126,21 @@ def options_sequence():
             elif inp == '5':
                 set_initial_universe(block_switch)
             else:
-                break
+                seed_choice()
 
-    print(term.clear + term.move_y(term.height //2))
+
+def rate_choice():
+    """
+    Allow user to choose speed/rate. 
+    """
+    print(term.clear + term.move_y(term.height//2-5))
+    print(term.bold_white_on_darkgreen(term.center('')))
     print(term.bold_white_on_darkgreen(term.center('Conway\'s Game of Life')))
     print(term.white_on_darkgreen(term.center('Choose your speed.')))
     print(term.white_on_darkgreen(term.center('1    Slow  ')))
     print(term.white_on_darkgreen(term.center('2    Medium')))
     print(term.white_on_darkgreen(term.center('3    Fast  ')))
+    print(term.bold_white_on_darkgreen(term.center('')))
 
     with term.hidden_cursor(), term.cbreak():
         global speed
@@ -139,28 +148,38 @@ def options_sequence():
         while inp == '':
             inp = term.inkey()
             if inp == '1':
-                speed = 0.5
+                speed = 0.3
             elif inp == '2':
-                speed = 0.07
+                speed = 0.08
             elif inp == '3':
-                speed = 0.01
+                speed = 0.03
             else:
-                break
+                rate_choice()
+
+
+def intro_screen():
+    print(term.clear + term.move_y(term.height//2-5))
+    print(term.bold_white_on_darkgreen(term.center('')))
+    print(term.bold_white_on_darkgreen(term.center('Conway\'s Game of Life')))
+    print(term.bold_white_on_darkgreen(term.center('\u25A0 \u25A0 \u25A0 \u25A0 \u25A0 \u25A0 \u25A0')))
+    print(term.white_on_darkgreen(term.center('Press any key to continue.')))
+    print(term.bold_white_on_darkgreen(term.center('')))
 
 
 def main():
     global universe
 
-    print(term.clear + term.move_y(term.height //2))
-    print(term.bold_white_on_darkgreen(term.center('Conway\'s Game of Life')))
-    print(term.white_on_darkgreen(term.center('Press any key to continue.')))
-    print(term.white_on_darkgreen(term.center('Ctrl+C to quit.')))
+    universe = np.zeros((term.height-1,term.width))  # -1 accounts for header
+
+    intro_screen()
 
     with term.hidden_cursor(), term.cbreak():
         inp = ''
         while inp == '':
             inp = term.inkey()
-        options_sequence()
+        seed_choice()
+        rate_choice()
+
 
     with term.hidden_cursor(), term.cbreak():
         refresh_screen()
@@ -169,13 +188,19 @@ def main():
             with term.hidden_cursor(), term.cbreak():
                 inp = term.inkey()
         for i in range(num_generations):
-            universe = generation(universe)
-            print(term.clear)
-            refresh_screen()
-            sleep(speed)
-            # If window resizes, we break the game. 
-            if term.width != len(universe[0]):
+            inp = term.inkey()
+            if inp == ' ':
+                universe = generation(universe)
+                print(term.clear)
+                refresh_screen()
+                sleep(speed)
+            elif inp.lower() == 'm':
+                main()
+            elif inp.lower() == 'q':
                 break
+            # If window resizes, restart. 
+            if term.width != len(universe[0]):
+                main()
 
 with term.fullscreen():
     main()
