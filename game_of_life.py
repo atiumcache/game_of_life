@@ -11,11 +11,22 @@ beacon = [[1,1,0,0],
           [0,0,1,1],
           [0,0,1,1]]
 
+r_pentomino = [[0,1,1],
+               [1,1,0],
+               [0,1,0]]
 
-"""Set starting location for seed cells."""
-seed_start_y = floor(term.height/2)
-seed_start_x = floor(term.width/2)
-universe[seed_start_y:seed_start_y+4, seed_start_x:seed_start_x+4] = beacon
+
+def set_initial_universe(chosen_seed):
+    """
+    Place the seed cells within the initial universe. 
+
+    :param chosen_seed: the user's seed choice
+
+    """
+    
+    seed_start_y = floor(term.height/2) - floor(len(chosen_seed)/2)
+    seed_start_x = floor(term.width/2) - floor(len(chosen_seed[0])/2)
+    universe[seed_start_y:seed_start_y+len(chosen_seed), seed_start_x:seed_start_x+len(chosen_seed[0])] = chosen_seed
 
 
 def survival(x, y, universe):
@@ -71,8 +82,23 @@ def options_sequence():
 
 
     """
+    print(term.fullscreen, term.clear + term.move_y(term.height //2))
+    print(term.white_on_darkgreen(term.center('Conway\'s Game of Life.')))
+    print(term.black_on_darkgreen(term.center('Choose your starting seed.')))
+    print(term.black_on_darkgreen(term.center('1    Beacon')))
+    print(term.black_on_darkgreen(term.center('2    R-Pentomino')))
+    with term.hidden_cursor(), term.cbreak():
+        input = ''
+        while input == '':
+            input = term.inkey()
+            if input == '1':
+                set_initial_universe(beacon)
+            elif input == '2':
+                set_initial_universe(r_pentomino)
+            else:
+                break
 
-    with 
+        
 
 
 def main():
@@ -83,7 +109,11 @@ def main():
     print(term.black_on_darkgreen(term.center('Press any key to continue.')))
     print(term.black_on_darkgreen(term.center('Ctrl + C to quit.')))
 
-    options_sequence()
+    with term.hidden_cursor(), term.cbreak():
+        input = ''
+        while input == '':
+            input = term.inkey()
+        options_sequence()
 
     with term.hidden_cursor(), term.cbreak():
         input = ''
