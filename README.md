@@ -15,11 +15,11 @@ These rules lead to the emergence of complex patterns and behaviors, and the "ga
 
 I have implemeneted 5 different seeds for the user to choose from:
 
-- Beacon: An **oscillator** that switches back and forth between two states. 
-- R-Pentomino: A **methuselah** that evolves over many generations, before eventually stabilizing.
-- Diehard: A pattern that disappears after 130 generations. 
-- Acorn: A pattern that takes 5206 generations to generate 633 cells.
-- Block Switch Engine: An infinite growth pattern that leaves stable blocks in its wake
+- **Beacon**: An *oscillator* that switches back and forth between two states. 
+- **R-Pentomino**: A *methuselah* that evolves over many generations, before eventually stabilizing.
+- **Diehard**: A pattern that disappears after 130 generations. 
+- **Acorn**: A pattern that takes 5206 generations to generate 633 cells.
+- **Block Switch Engine**: An infinite growth pattern that leaves stable blocks in its wake
 
 ## Other Options
 
