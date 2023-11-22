@@ -26,3 +26,19 @@ I have implemeneted 5 different seeds for the user to choose from:
 ## Other Options
 
 3 speed options: slow, medium, fast. This corresponds to the speed at which each generation occurs. 
+
+## Usage
+
+The only dependencies required for this script are `blessed` and `numpy`. 
+These can be installed with:
+	pip install numpy
+and
+	pip install blessed
+
+Then, clone this repository or download the `game_of_life.py` script directly.
+
+With your dependencies installed, execute the following to run the script:
+
+	python game_of_life.py
+
+That's it --- the program will provide a few options before allowing you to 'play god'. 
