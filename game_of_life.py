@@ -9,6 +9,8 @@ universe = numpy.zeros((term.height - 1, term.width))  # -1 accounts for header
 
 speed = 0.5
 
+num_generations = 2000
+
 """Starting Seed Options"""
 beacon = [[1, 1, 0, 0], [1, 1, 0, 0], [0, 0, 1, 1], [0, 0, 1, 1]]
 
@@ -176,7 +178,7 @@ def intro_screen():
 def main():
     global universe
 
-    universe = np.zeros((term.height - 1, term.width))  # -1 accounts for header
+    universe = numpy.zeros((term.height - 1, term.width))  # -1 accounts for header
 
     intro_screen()
     seed_choice()
