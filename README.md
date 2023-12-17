@@ -4,6 +4,15 @@ A simple implementation of John Conway's Game of Life.
 
 ![](images/acorn_seed.png)
 
+- [About](#about)
+- [Demo](#demo)
+- [Seed Options](#seed-options)
+- [Other Options](#other-options)
+- [Usage](#usage)
+- [License](#license)
+
+## About
+
 The Game of Life is a cellular automaton, a mathematical model, and a simulation of a two-dimensional grid of square cells. Each cell can be in one of two states, alive or dead. The state of a cell evolves over discrete time steps based on a set of rules:
 
 - **Underpopulation**: A live cell with fewer than two live neighbors dies (loneliness).
