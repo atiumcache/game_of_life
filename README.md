@@ -13,6 +13,12 @@ Conway's Game of Life is a cellular automaton, a mathematical model, and a simul
 
 These rules lead to the emergence of complex patterns and behaviors, and the "game" is not played by a player but rather evolves on its own based on the initial configuration of live and dead cells. The Game of Life is a classic example of cellular automata and has applications in computer science, mathematics, and artificial life studies.
 
+## Demo
+
+View the program in action: 
+
+![program demo](images/game-of-life-demo.gif)
+
 ## Seed Options
 
 I have implemeneted 5 different seeds for the user to choose from:
@@ -21,7 +27,7 @@ I have implemeneted 5 different seeds for the user to choose from:
 - **R-Pentomino**: A *methuselah* that evolves over many generations, before eventually stabilizing.
 - **Diehard**: A pattern that disappears after 130 generations. 
 - **Acorn**: A pattern that takes 5206 generations to generate 633 cells.
-- **Block Switch Engine**: An infinite growth pattern that leaves stable blocks in its wake
+- **Block Switch Engine**: An infinite growth pattern that leaves stable blocks in its wake.
 
 ## Other Options
 
@@ -44,4 +50,4 @@ With your dependencies installed, execute the following to run the script:
 
 	python game_of_life.py
 
-That's it --- the program will prompt you with a few options before allowing you to 'play god'. 
+That's it --- the program will prompt you with a few options before allowing you to create life. 
