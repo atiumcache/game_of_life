@@ -6,8 +6,9 @@ A simple implementation of John Conway's Game of Life.
 
 - [About](#about)
 - [Demo](#demo)
-- [Seed Options](#seed-options)
-- [Other Options](#other-options)
+- [Options](#options)
+	- [Seeds](#seeds)
+	- [Other Options](#other-options)
 - [Usage](#usage)
 - [License](#license)
 
@@ -28,7 +29,9 @@ View the program in action:
 
 ![program demo](images/game-of-life-demo.gif)
 
-## Seed Options
+## Options
+
+### Seeds
 
 I have implemeneted 5 different seeds for the user to choose from:
 
@@ -38,7 +41,7 @@ I have implemeneted 5 different seeds for the user to choose from:
 - **Acorn**: A pattern that takes 5206 generations to generate 633 cells.
 - **Block Switch Engine**: An infinite growth pattern that leaves stable blocks in its wake.
 
-## Other Options
+### Other Options
 
 3 speed options: slow, medium, fast. This corresponds to the speed at which each generation occurs. 
 
