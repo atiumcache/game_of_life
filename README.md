@@ -54,3 +54,4 @@ That's it --- the program will prompt you with a few options before allowing you
 
 ## License 
 
+Distributed under the MIT License. See LICENSE.txt for more information.
