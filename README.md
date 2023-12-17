@@ -33,7 +33,7 @@ View the program in action:
 
 ### Seeds
 
-I have implemeneted 5 different seeds for the user to choose from:
+The _seed_ is the starting cells arrangement that influences the rest of the game. I have implemeneted 5 different seeds for the user to choose from:
 
 - **Beacon**: An *oscillator* that switches back and forth between two states. 
 - **R-Pentomino**: A *methuselah* that evolves over many generations, before eventually stabilizing.
