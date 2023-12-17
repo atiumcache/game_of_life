@@ -4,7 +4,7 @@ A simple implementation of John Conway's Game of Life.
 
 ![](images/acorn_seed.png)
 
-Conway's Game of Life is a cellular automaton, a mathematical model, and a simulation of a two-dimensional grid of square cells. Each cell can be in one of two states, alive or dead. The state of a cell evolves over discrete time steps based on a set of rules:
+The Game of Life is a cellular automaton, a mathematical model, and a simulation of a two-dimensional grid of square cells. Each cell can be in one of two states, alive or dead. The state of a cell evolves over discrete time steps based on a set of rules:
 
 - **Underpopulation**: A live cell with fewer than two live neighbors dies (loneliness).
 - **Survival**: A live cell with two or three live neighbors survives to the next generation.
@@ -51,3 +51,6 @@ With your dependencies installed, execute the following to run the script:
 	python game_of_life.py
 
 That's it --- the program will prompt you with a few options before allowing you to create life. 
+
+## License 
+
