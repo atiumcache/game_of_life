@@ -10,6 +10,7 @@ A simple implementation of John Conway's Game of Life.
 	- [Seeds](#seeds)
 	- [Other Options](#other-options)
 - [Usage](#usage)
+- [Future Work](#future-work)
 - [License](#license)
 
 ## About
@@ -63,6 +64,12 @@ With your dependencies installed, execute the following to run the script:
 	python game_of_life.py
 
 That's it --- the program will prompt you with a few options before allowing you to create life. 
+
+## Future Work
+
+- Change background/cell colors.
+- More starting seed options.
+- Allow the user to input their own starting seed!
 
 ## License 
 
