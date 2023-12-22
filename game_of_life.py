@@ -206,12 +206,16 @@ def main():
                 refresh_screen()     
             elif inp.lower() == "m":
                 main()
-            inp = ""
-            sleep(speed)
+            elif inp.lower() == "q":
+                term.clear()
+                exit()
 
             # If window resizes, restart.
             if term.width != len(universe[0]):
                 main()
+
+            inp = ""
+            sleep(speed)
 
 
 with term.fullscreen():
