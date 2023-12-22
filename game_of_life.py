@@ -80,8 +80,9 @@ def generation(some_universe):
 
 def refresh_screen():
     """
-    Display a new generation.
+    Display a new generation based on the current state of the universe.
     """
+
     with term.cbreak(), term.hidden_cursor():
         print(
             term.bold_white_on_darkgreen(
@@ -98,8 +99,9 @@ def refresh_screen():
 
 def seed_choice():
     """
-    Allow user to choose initial seed.
+    Prompts user to choose initial seed.
     """
+
     print(term.clear + term.move_y(term.height // 2 - 5))
     print(term.bold_white_on_darkgreen(term.center("")))
     print(term.bold_white_on_darkgreen(term.center("Conway's Game of Life")))
@@ -131,15 +133,16 @@ def seed_choice():
 
 def rate_choice():
     """
-    Allow user to choose speed/rate.
+    Prompts user to choose speed/rate.
     """
+
     print(term.clear + term.move_y(term.height // 2 - 5))
     print(term.bold_white_on_darkgreen(term.center("")))
     print(term.bold_white_on_darkgreen(term.center("Conway's Game of Life")))
     print(term.white_on_darkgreen(term.center("Choose your speed.")))
-    print(term.white_on_darkgreen(term.center("1    Slow  ")))
-    print(term.white_on_darkgreen(term.center("2    Medium")))
-    print(term.white_on_darkgreen(term.center("3    Fast  ")))
+    print(term.white_on_darkgreen(term.center("1    Slow   ")))
+    print(term.white_on_darkgreen(term.center("2    Medium ")))
+    print(term.white_on_darkgreen(term.center("3    Fast   ")))
     print(term.bold_white_on_darkgreen(term.center("")))
 
     with term.hidden_cursor(), term.cbreak():
@@ -148,16 +151,20 @@ def rate_choice():
         while inp == "":
             inp = term.inkey()
             if inp == "1":
-                speed = 0.3
-            elif inp == "2":
                 speed = 0.08
+            elif inp == "2":
+                speed = 0.06
             elif inp == "3":
-                speed = 0.03
+                speed = 0.04
             else:
                 rate_choice()
 
 
 def intro_screen():
+    """
+    Loads the title screen.
+    """
+
     print(term.clear + term.move_y(term.height // 2 - 5))
     print(term.bold_white_on_darkgreen(term.center("")))
     print(term.bold_white_on_darkgreen(term.center("Conway's Game of Life")))
@@ -176,31 +183,32 @@ def intro_screen():
 
 
 def main():
+    """
+    Main flow for the app. 
+    """
+
     global universe
 
-    universe = numpy.zeros((term.height - 1, term.width))  # -1 accounts for header
+    universe = numpy.zeros((term.height - 1, term.width))  # '-1' accounts for the header
 
     intro_screen()
     seed_choice()
     rate_choice()
-
+ 
     with term.hidden_cursor(), term.cbreak():
         refresh_screen()
         inp = ""
-        while inp != " ":
-            with term.hidden_cursor(), term.cbreak():
-                inp = term.inkey()
-        for i in range(num_generations):
+        
+        while inp.lower() != 'q':
             inp = term.inkey()
             if inp == " ":
                 universe = generation(universe)
-                print(term.clear)
-                refresh_screen()
-                sleep(speed)
+                refresh_screen()     
             elif inp.lower() == "m":
                 main()
-            elif inp.lower() == "q":
-                break
+            inp = ""
+            sleep(speed)
+
             # If window resizes, restart.
             if term.width != len(universe[0]):
                 main()
