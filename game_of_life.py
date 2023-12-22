@@ -184,26 +184,28 @@ def intro_screen():
 
 def main():
     """
-    Main flow for the app. 
+    Main flow for the app.
     """
 
     global universe
 
-    universe = numpy.zeros((term.height - 1, term.width))  # '-1' accounts for the header
+    universe = numpy.zeros(
+        (term.height - 1, term.width)
+    )  # '-1' accounts for the header
 
     intro_screen()
     seed_choice()
     rate_choice()
- 
+
     with term.hidden_cursor(), term.cbreak():
         refresh_screen()
         inp = ""
-        
-        while inp.lower() != 'q':
+
+        while inp.lower() != "q":
             inp = term.inkey()
             if inp == " ":
                 universe = generation(universe)
-                refresh_screen()     
+                refresh_screen()
             elif inp.lower() == "m":
                 main()
             elif inp.lower() == "q":
