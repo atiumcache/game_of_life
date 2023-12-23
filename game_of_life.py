@@ -220,5 +220,6 @@ def main():
             sleep(speed)
 
 
-with term.fullscreen():
-    main()
+if __name__ == "__main__":
+    with term.fullscreen():
+        main()
