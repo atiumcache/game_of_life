@@ -30,6 +30,44 @@ block_switch = [
 ]
 
 
+def main():
+    """
+    Main flow for the app.
+    """
+
+    global universe
+
+    universe = numpy.zeros(
+        (term.height - 1, term.width)
+    )  # '-1' accounts for the header
+
+    intro_screen()
+    seed_choice()
+    rate_choice()
+
+    with term.hidden_cursor(), term.cbreak():
+        refresh_screen()
+        inp = ""
+
+        while inp.lower() != "q":
+            inp = term.inkey()
+            if inp == " ":
+                universe = generation(universe)
+                refresh_screen()
+            elif inp.lower() == "m":
+                main()
+            elif inp.lower() == "q":
+                term.clear()
+                exit()
+
+            # If window resizes, restart.
+            if term.width != len(universe[0]):
+                main()
+
+            inp = ""
+            sleep(speed)
+
+
 def set_initial_universe(chosen_seed):
     """
     Place the seed cells within the initial universe.
@@ -180,44 +218,6 @@ def intro_screen():
         inp = ""
         while inp == "":
             inp = term.inkey()
-
-
-def main():
-    """
-    Main flow for the app.
-    """
-
-    global universe
-
-    universe = numpy.zeros(
-        (term.height - 1, term.width)
-    )  # '-1' accounts for the header
-
-    intro_screen()
-    seed_choice()
-    rate_choice()
-
-    with term.hidden_cursor(), term.cbreak():
-        refresh_screen()
-        inp = ""
-
-        while inp.lower() != "q":
-            inp = term.inkey()
-            if inp == " ":
-                universe = generation(universe)
-                refresh_screen()
-            elif inp.lower() == "m":
-                main()
-            elif inp.lower() == "q":
-                term.clear()
-                exit()
-
-            # If window resizes, restart.
-            if term.width != len(universe[0]):
-                main()
-
-            inp = ""
-            sleep(speed)
 
 
 if __name__ == "__main__":
