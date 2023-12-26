@@ -2,6 +2,7 @@ import numpy
 from blessed import Terminal
 from math import floor
 from time import sleep
+import signal
 
 term = Terminal()
 
@@ -34,6 +35,7 @@ def main():
     """
     Main flow for the app.
     """
+    signal.signal(signal.SIGWINCH, check_term_resize)
 
     global universe
 
@@ -66,6 +68,11 @@ def main():
 
             inp = ""
             sleep(speed)
+
+
+def check_term_resize(sig, action):
+    if term.width != len(universe[0]):
+        main()
 
 
 def set_initial_universe(chosen_seed):
