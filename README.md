@@ -51,13 +51,9 @@ There are 3 speed options: slow, medium, fast. This corresponds to the speed at 
 The only dependencies required for this script are `blessed` and `numpy`. 
 These can be installed with:
 
-	pip install numpy
+	pip install numpy blessed
 
-and
-
-	pip install blessed
-
-Then, clone this repository or download the `game_of_life.py` script directly.
+Then, clone this repository or just download the `game_of_life.py` script directly.
 
 With your dependencies installed, execute the following to run the script:
 
