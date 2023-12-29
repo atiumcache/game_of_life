@@ -48,6 +48,22 @@ There are 3 speed options: slow, medium, fast. This corresponds to the speed at 
 
 ## Usage
 
+### Linux/UNIX
+
+Download the `game_of_life` executable file from this repository. Add it to your PATH:
+
+	export PATH="/path/to/executable:$PATH"
+
+Or, just move the file into your `usr/local/bin` folder (or equivalent). 
+
+Then, call the program from the terminal to play: 
+
+	game_of_life
+
+### Windows/Manual Operation
+
+We don't have a Windows `.exe` file yet. You can run the program manually.
+
 The only dependencies required for this script are `blessed` and `numpy`. 
 These can be installed with:
 
@@ -57,7 +73,7 @@ Then, clone this repository or just download the `game_of_life.py` script direct
 
 With your dependencies installed, execute the following to run the script:
 
-	python game_of_life.py
+	python3 game_of_life.py
 
 That's it --- the program will prompt you with a few options before allowing you to create life. 
 
